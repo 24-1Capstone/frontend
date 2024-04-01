@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
+import { GeistSans } from 'geist/font/sans'
 
-const inter = Inter({ subsets: ['latin'] })
+import '@/styles/globals.css'
+import { cn } from '@/lib/utils'
+
+const fontSans = GeistSans
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,8 +17,17 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="ko">
+      <body
+        className={cn(
+          'min-h-screen bg-black font-sans antialiased',
+          fontSans.variable,
+        )}
+      >
+        <div className="relative mx-auto flex min-h-screen max-w-screen-sm flex-col bg-background">
+          {children}
+        </div>
+      </body>
     </html>
   )
 }
