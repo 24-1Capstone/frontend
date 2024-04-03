@@ -1,10 +1,5 @@
-'use client'
-
-import { signIn } from 'next-auth/react'
-import { GitHub as GitHubIcon } from 'react-feather'
-
 import { Bottom, Main, Top } from '@/components/layout'
-import { Button } from '@/components/ui/button'
+import { SignInButton } from '@/components/sign-in-button'
 import Logo from '@/assets/svgs/logo.svg'
 
 export default function Landing() {
@@ -18,14 +13,7 @@ export default function Landing() {
         </h1>
       </Main>
       <Bottom className="p-4">
-        <Button
-          size="lg"
-          className="w-full"
-          onClick={() => signIn('github', { callbackUrl: '/' })}
-        >
-          <GitHubIcon className="mr-2 h-4 w-4" />
-          GitHub으로 계속하기
-        </Button>
+        <SignInButton />
       </Bottom>
     </>
   )
