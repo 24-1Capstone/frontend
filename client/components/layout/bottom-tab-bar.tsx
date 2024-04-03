@@ -1,23 +1,18 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import {
-  Home as HomeIcon,
-  Calendar as CalendarIcon,
-  User as UserIcon,
-  Settings as SettingsIcon,
-} from 'react-feather'
+import { Home, Calendar, User, Settings } from 'lucide-react'
 
 import { Tab, TabBar } from '@/components/ui/tab-bar'
 
 const TABS = [
-  { icon: HomeIcon, href: '/home', title: '홈' },
-  { icon: CalendarIcon, href: '/calendar', title: '일정' },
-  { icon: UserIcon, href: '/profile', title: '프로필' },
-  { icon: SettingsIcon, href: '/settings', title: '설정' },
+  { icon: Home, href: '/home', title: '홈' },
+  { icon: Calendar, href: '/calendar', title: '일정' },
+  { icon: User, href: '/profile', title: '프로필' },
+  { icon: Settings, href: '/settings', title: '설정' },
 ]
 
-function GlobalNavigationBar() {
+function BottomTabBar() {
   const pathname = usePathname()
 
   return (
@@ -32,4 +27,4 @@ function GlobalNavigationBar() {
   )
 }
 
-export { GlobalNavigationBar }
+export { BottomTabBar }
