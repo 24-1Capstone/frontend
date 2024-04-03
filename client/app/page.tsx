@@ -1,21 +1,13 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
-import { signIn, useSession } from 'next-auth/react'
-import { GitHub } from 'react-feather'
+import { signIn } from 'next-auth/react'
+import { GitHub as GitHubIcon } from 'react-feather'
 
 import { Bottom, Main, Top } from '@/components/layout'
 import { Button } from '@/components/ui/button'
 import Logo from '@/assets/svgs/logo.svg'
 
-export default function Home() {
-  const router = useRouter()
-  const { data: session } = useSession()
-
-  if (session) {
-    router.push('/chat')
-  }
-
+export default function Landing() {
   return (
     <>
       <Top className="p-4"></Top>
@@ -31,7 +23,7 @@ export default function Home() {
           className="w-full"
           onClick={() => signIn('github', { callbackUrl: '/' })}
         >
-          <GitHub className="mr-2 h-4 w-4" />
+          <GitHubIcon className="mr-2 h-4 w-4" />
           GitHub으로 계속하기
         </Button>
       </Bottom>
