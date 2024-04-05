@@ -1,10 +1,10 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
 
 import { signOut } from '@/api/auth'
 import { Button } from '@/components/ui/button'
-import { useRouter } from 'next/navigation'
 
 function SignOutButton() {
   const router = useRouter()
