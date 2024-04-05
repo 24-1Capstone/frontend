@@ -17,7 +17,7 @@ function Tab({
     <Link
       href={href}
       className={cn(
-        'flex flex-col items-center gap-2 border-t p-5 text-xs',
+        'flex flex-col items-center gap-2 border-t p-3 text-xs',
         selected && 'border-t-2 border-green-600',
         className,
       )}

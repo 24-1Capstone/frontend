@@ -20,7 +20,7 @@ function BottomTabBar() {
       {TABS.map(({ icon: Icon, href, title }) => (
         <Tab key={href} href={href} selected={pathname.startsWith(href)}>
           <Icon className="h-5 w-5" />
-          <span className="sr-only">{title}</span>
+          <span className="text-xs">{title}</span>
         </Tab>
       ))}
     </TabBar>
