@@ -5,10 +5,10 @@ export default async function Home() {
     <Tabs defaultValue="followers">
       <TabsList className="w-full">
         <TabsTrigger value="followers" className="w-1/2">
-          Followers
+          팔로워
         </TabsTrigger>
         <TabsTrigger value="following" className="w-1/2">
-          Following
+          팔로잉
         </TabsTrigger>
       </TabsList>
       <TabsContent value="followers">Followers content</TabsContent>
