@@ -1,13 +1,12 @@
-import { cookies } from 'next/headers'
 import axios from 'axios'
+import Cookies from 'js-cookie'
 
 const axiosInstance = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_API_BASE_URL}/api`,
 })
 
 axiosInstance.interceptors.request.use((config) => {
-  const cookieStore = cookies()
-  const token = cookieStore.get('token')
+  const token = Cookies.get('token')
 
   config.headers.Authorization = `Bearer ${token}`
 
