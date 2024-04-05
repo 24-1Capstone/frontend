@@ -3,7 +3,6 @@ import { GeistSans } from 'geist/font/sans'
 
 import '@/styles/globals.css'
 import { cn } from '@/lib/utils'
-import { NextAuthProvider } from '@/contexts/next-auth-provider'
 
 const fontSans = GeistSans
 
@@ -25,11 +24,9 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
-        <NextAuthProvider>
-          <div className="relative mx-auto flex min-h-screen max-w-screen-sm flex-col bg-background">
-            {children}
-          </div>
-        </NextAuthProvider>
+        <div className="relative mx-auto flex min-h-screen max-w-screen-sm flex-col bg-background">
+          {children}
+        </div>
       </body>
     </html>
   )
