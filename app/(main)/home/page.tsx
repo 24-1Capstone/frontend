@@ -1,6 +1,7 @@
+import { getUserInfo } from '@/api/user'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
-export default async function Home() {
+export default function Home() {
   return (
     <Tabs defaultValue="followers">
       <TabsList className="w-full">
@@ -11,7 +12,7 @@ export default async function Home() {
           팔로잉
         </TabsTrigger>
       </TabsList>
-      <TabsContent value="followers">Followers content</TabsContent>
+      <TabsContent value="followers"></TabsContent>
       <TabsContent value="following">Following content</TabsContent>
     </Tabs>
   )
