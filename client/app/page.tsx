@@ -1,5 +1,5 @@
 import { Bottom, Main, Top } from '@/components/layout'
-import { SignInButton } from '@/components/sign-in-button'
+import { LogInButton } from '@/components/log-in-button'
 import Logo from '@/assets/svgs/logo.svg'
 
 export default function Landing() {
@@ -13,7 +13,7 @@ export default function Landing() {
         </h1>
       </Main>
       <Bottom className="p-4">
-        <SignInButton />
+        <LogInButton />
       </Bottom>
     </>
   )

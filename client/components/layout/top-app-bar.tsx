@@ -2,7 +2,7 @@ import { ChevronLeft } from 'lucide-react'
 
 import { AppBar, Center, End, Start } from '@/components/ui/app-bar'
 import { Button } from '@/components/ui/button'
-import { SignOutButton } from '@/components/sign-out-button'
+import { LogOutButton } from '@/components/log-out-button'
 
 function TopAppBar() {
   return (
@@ -16,7 +16,7 @@ function TopAppBar() {
         <h2 className="text-xl font-bold">Home</h2>
       </Center>
       <End>
-        <SignOutButton />
+        <LogOutButton />
       </End>
     </AppBar>
   )

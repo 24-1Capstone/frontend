@@ -5,10 +5,7 @@ export async function middleware(req: NextRequest, event: NextFetchEvent) {
   const session = req.cookies.get('token')
   const { pathname } = req.nextUrl
 
-  if (session) {
-    if (pathname === '/api/auth/signin' || pathname === '/')
-      return NextResponse.redirect(new URL('/home', req.url))
-  } else {
+  if (!session) {
     if (
       pathname.startsWith('/home') ||
       pathname.startsWith('/calendar') ||

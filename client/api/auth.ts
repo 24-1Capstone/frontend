@@ -1,7 +1,7 @@
 import axiosInstance from './instance'
 
-const signOut = async () => {
-  return await axiosInstance.get('/signout')
+const logOut = async () => {
+  return await axiosInstance.post('/logout')
 }
 
-export { signOut }
+export { logOut }

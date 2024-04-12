@@ -3,7 +3,7 @@ import { Github } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
-function SignInButton() {
+function LogInButton() {
   return (
     <Button size="lg" className="w-full" asChild>
       <Link
@@ -16,4 +16,4 @@ function SignInButton() {
   )
 }
 
-export { SignInButton }
+export { LogInButton }

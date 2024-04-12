@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
 
-import { signOut } from '@/api/auth'
+import { logOut } from '@/api/auth'
 import { Button } from '@/components/ui/button'
 import {
   Drawer,
@@ -16,11 +16,11 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer'
 
-function SignOutButton() {
+function LogOutButton() {
   const router = useRouter()
 
-  const handleSignOut = () => {
-    signOut().then((response) => {
+  const handleLogOut = () => {
+    logOut().then((response) => {
       if (response.status === 200) {
         Cookies.remove('token')
         Cookies.remove('refresh_token')
@@ -42,7 +42,7 @@ function SignOutButton() {
           </DrawerDescription>
         </DrawerHeader>
         <DrawerFooter>
-          <Button onClick={handleSignOut}>로그아웃</Button>
+          <Button onClick={handleLogOut}>로그아웃</Button>
           <DrawerClose asChild>
             <Button variant="outline">취소</Button>
           </DrawerClose>
@@ -52,4 +52,4 @@ function SignOutButton() {
   )
 }
 
-export { SignOutButton }
+export { LogOutButton }
