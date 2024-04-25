@@ -3,6 +3,7 @@ import { GeistSans } from 'geist/font/sans'
 
 import '@/styles/globals.css'
 import { cn } from '@/lib/utils'
+import { Providers } from '@/components/providers'
 
 const fontSans = GeistSans
 
@@ -24,9 +25,11 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
-        <div className="relative mx-auto flex min-h-screen max-w-screen-sm flex-col bg-background">
-          {children}
-        </div>
+        <Providers>
+          <div className="relative mx-auto flex min-h-screen max-w-screen-sm flex-col bg-background">
+            {children}
+          </div>
+        </Providers>
       </body>
     </html>
   )
