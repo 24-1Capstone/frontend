@@ -1,5 +1,6 @@
 import axiosInstance from './instance'
-import { UserType } from '@/types/user'
+import type { UserType } from '@/types/user'
+import type { ProfileType } from '@/types/profile'
 
 const getUserFollowers = async (): Promise<UserType[]> => {
   const response = await axiosInstance.get('/user/followers')
@@ -11,8 +12,9 @@ const getUserFollowing = async (): Promise<UserType[]> => {
   return response.data
 }
 
-const getUserInfo = async () => {
-  return await axiosInstance.get('/api/users/userinfo')
+const getUserInfo = async (): Promise<ProfileType> => {
+  const response = await axiosInstance.get('/api/user/userinfo')
+  return response.data
 }
 
 export { getUserFollowers, getUserFollowing, getUserInfo }
