@@ -1,7 +1,15 @@
 import axiosInstance from './instance'
 
-const getUserInfo = async () => {
-  return await axiosInstance.get('/users/userinfo')
+const getUserFollowers = async () => {
+  return await axiosInstance.get('/user/followers')
 }
 
-export { getUserInfo }
+const getUserFollowing = async () => {
+  return await axiosInstance.get('/user/following')
+}
+
+const getUserInfo = async () => {
+  return await axiosInstance.get('/api/users/userinfo')
+}
+
+export { getUserFollowers, getUserFollowing, getUserInfo }
