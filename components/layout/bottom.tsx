@@ -8,7 +8,7 @@ const Bottom = ({
   children?: React.ReactNode
 }) => {
   return (
-    <div className={cn('sticky bottom-0 bg-background', className)}>
+    <div className={cn('sticky bottom-0 z-50 bg-background', className)}>
       {children}
     </div>
   )
