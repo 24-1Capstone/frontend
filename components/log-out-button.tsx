@@ -15,9 +15,11 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer'
+import { useUserInfo } from '@/hooks/queries/use-user-info'
 
 function LogOutButton() {
   const router = useRouter()
+  const { data: user } = useUserInfo()
 
   const handleLogOut = () => {
     logOut().then((response) => {
@@ -36,7 +38,7 @@ function LogOutButton() {
       </DrawerTrigger>
       <DrawerContent className="mx-auto w-full max-w-screen-sm">
         <DrawerHeader>
-          <DrawerTitle className="text-center">유저명</DrawerTitle>
+          <DrawerTitle className="text-center">{user?.name}</DrawerTitle>
           <DrawerDescription className="text-center">
             로그아웃하시겠습니까?
           </DrawerDescription>
