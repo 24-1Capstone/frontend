@@ -1,11 +1,14 @@
 import axiosInstance from './instance'
+import { UserType } from '@/types/user'
 
-const getUserFollowers = async () => {
-  return await axiosInstance.get('/user/followers')
+const getUserFollowers = async (): Promise<UserType[]> => {
+  const response = await axiosInstance.get('/user/followers')
+  return response.data
 }
 
-const getUserFollowing = async () => {
-  return await axiosInstance.get('/user/following')
+const getUserFollowing = async (): Promise<UserType[]> => {
+  const response = await axiosInstance.get('/user/following')
+  return response.data
 }
 
 const getUserInfo = async () => {
