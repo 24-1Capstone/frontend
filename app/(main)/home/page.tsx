@@ -10,8 +10,6 @@ export default function Home() {
   const { data: followers } = useUserFollowers()
   const { data: following } = useUserFollowing()
 
-  console.log(followers, following)
-
   return (
     <Tabs defaultValue="followers">
       <TabsList className="mb-4 w-full">
