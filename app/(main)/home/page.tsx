@@ -14,10 +14,10 @@ export default function Home() {
     <Tabs defaultValue="followers">
       <TabsList className="mb-4 w-full">
         <TabsTrigger value="followers" className="w-1/2">
-          팔로워
+          팔로워 ({followers?.length})
         </TabsTrigger>
         <TabsTrigger value="following" className="w-1/2">
-          팔로잉
+          팔로잉 ({following?.length})
         </TabsTrigger>
       </TabsList>
       <TabsContent value="followers">
