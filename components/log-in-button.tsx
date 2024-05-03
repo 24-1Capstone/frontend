@@ -7,7 +7,7 @@ function LogInButton() {
   return (
     <Button size="lg" className="w-full" asChild>
       <Link
-        href={`${process.env.NEXT_PUBLIC_API_BASE_URL}/oauth2/authorization/github`}
+        href={`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/authorize/github`}
       >
         <Github className="mr-2 h-4 w-4" />
         GitHub으로 계속하기
