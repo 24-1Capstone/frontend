@@ -5,7 +5,7 @@ import { buttonVariants } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import type { ProfileType } from '@/types/profile'
 
-function Profile({ user }: { user: ProfileType }) {
+function Profile({ user }: { user?: ProfileType }) {
   return (
     <div className="flex flex-col items-center gap-6 font-medium">
       <Avatar className="h-52 w-52">
