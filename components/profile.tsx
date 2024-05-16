@@ -8,7 +8,7 @@ import type { ProfileType } from '@/types/profile'
 
 function Profile({ user }: { user?: ProfileType }) {
   return (
-    <div className="flex flex-col items-center gap-6 font-medium">
+    <div className="flex flex-col items-center gap-6 p-8 font-medium">
       <Avatar className="h-52 w-52">
         <AvatarImage src={user?.avatar_url} draggable={false} />
         <AvatarFallback>{user?.login}</AvatarFallback>
