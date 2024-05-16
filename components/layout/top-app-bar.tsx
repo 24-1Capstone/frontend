@@ -1,6 +1,6 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { ChevronLeft } from 'lucide-react'
 
 import { AppBar, Center, End, Start } from '@/components/ui/app-bar'
@@ -15,6 +15,7 @@ const title: { [key: string]: string } = {
 }
 
 function TopAppBar() {
+  const router = useRouter()
   const pathname = usePathname()
 
   const routes = pathname.split('/').filter((path) => path !== '')
@@ -23,7 +24,7 @@ function TopAppBar() {
     <AppBar>
       <Start>
         {routes.length > 1 && (
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" onClick={() => router.back()}>
             <ChevronLeft className="h-4 w-4" />
           </Button>
         )}
