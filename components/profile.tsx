@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { GithubIcon, GlobeIcon, TwitterIcon } from 'lucide-react'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { buttonVariants } from '@/components/ui/button'
@@ -31,25 +32,29 @@ function Profile({ user }: { user?: ProfileType }) {
       <div className="flex gap-4">
         {user?.html_url && (
           <Link
-            className={buttonVariants()}
+            className={buttonVariants({ size: 'icon' })}
             href={user.html_url}
             target="_blank"
           >
-            깃허브
+            <GithubIcon />
           </Link>
         )}
         {user?.blog && (
-          <Link className={buttonVariants()} href={user.blog} target="_blank">
-            웹사이트
+          <Link
+            className={buttonVariants({ size: 'icon' })}
+            href={user.blog}
+            target="_blank"
+          >
+            <GlobeIcon />
           </Link>
         )}
         {user?.twitter_username && (
           <Link
-            className={buttonVariants()}
+            className={buttonVariants({ size: 'icon' })}
             href={user.twitter_username}
             target="_blank"
           >
-            트위터
+            <TwitterIcon />
           </Link>
         )}
       </div>
