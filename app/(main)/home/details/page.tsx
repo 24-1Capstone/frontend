@@ -1,11 +1,11 @@
 'use client'
 
+import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { useUserInfo } from '@/hooks/queries/use-user-info'
-import Link from 'next/link'
 import { buttonVariants } from '@/components/ui/button'
+import { useUserInfo } from '@/hooks/queries/use-user-info'
 
 export default function UserProfile() {
   const searchParams = useSearchParams()
