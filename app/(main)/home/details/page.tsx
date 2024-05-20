@@ -1,5 +1,6 @@
 'use client'
 
+import { Suspense } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 
@@ -8,7 +9,7 @@ import { useUserInfo } from '@/hooks/queries/use-user-info'
 import { buttonVariants } from '@/components/ui/button'
 import { CoffeeIcon } from 'lucide-react'
 
-export default function UserProfile() {
+function UserProfile() {
   const searchParams = useSearchParams()
   const username = searchParams.get('user')
 
@@ -28,5 +29,13 @@ export default function UserProfile() {
         커피챗 신청하기
       </Link>
     </div>
+  )
+}
+
+export default function Page() {
+  return (
+    <Suspense>
+      <UserProfile />
+    </Suspense>
   )
 }

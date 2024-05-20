@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import {
   ConsoleLogger,
@@ -21,7 +21,7 @@ import {
 } from '@/components/ui/select'
 import { createMeetingWithAttendee } from '@/api/meet'
 
-export default function UserProfile() {
+function Meet() {
   const searchParams = useSearchParams()
   const username = searchParams.get('user')
 
@@ -94,5 +94,13 @@ export default function UserProfile() {
 
       <Button onClick={handleJoinMeeting}>Start Meeting</Button>
     </>
+  )
+}
+
+export default function Page() {
+  return (
+    <Suspense>
+      <Meet />
+    </Suspense>
   )
 }

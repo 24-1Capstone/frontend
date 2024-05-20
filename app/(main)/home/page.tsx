@@ -6,7 +6,7 @@ import { UserCard } from '@/components/user-card'
 import { useMyFollowers } from '@/hooks/queries/use-my-followers'
 import { useMyFollowing } from '@/hooks/queries/use-my-following'
 
-export default function Home() {
+export default function Page() {
   const { data: followers } = useMyFollowers()
   const { data: following } = useMyFollowing()
 

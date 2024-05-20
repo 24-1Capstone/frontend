@@ -3,7 +3,7 @@
 import { Profile } from '@/components/profile'
 import { useMyInfo } from '@/hooks/queries/use-my-info'
 
-export default function MyProfile() {
+export default function Page() {
   const { data } = useMyInfo()
   const user = data?.[0]
 
