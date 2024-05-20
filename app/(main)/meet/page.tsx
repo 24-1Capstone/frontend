@@ -1,106 +1,64 @@
 'use client'
 
-import { Suspense, useState } from 'react'
-import { useSearchParams } from 'next/navigation'
-import {
-  ConsoleLogger,
-  DefaultDeviceController,
-  DefaultMeetingSession,
-  LogLevel,
-  MeetingSessionConfiguration,
-} from 'amazon-chime-sdk-js'
+import { MeetingSessionConfiguration } from 'amazon-chime-sdk-js'
+import { useMeetingManager } from 'amazon-chime-sdk-component-library-react'
 
-import { useUserInfo } from '@/hooks/queries/use-user-info'
-import { Button } from '@/components/ui/button'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 import { createMeetingWithAttendee } from '@/api/meet'
+import { Button } from '@/components/ui/button'
+import { MicSelection } from '@/components/mic-selection'
+import { SpeakerSelection } from '@/components/speaker-selection'
+import { CameraSelection } from '@/components/camera-selection'
+import { MicrophoneActivityPreviewBar } from '@/components/microphone-activity-preview-bar'
+import { PreviewVideo } from '@/components/preview-video'
+import { useEffect } from 'react'
 
-function Meet() {
-  const searchParams = useSearchParams()
-  const username = searchParams.get('user')
+export default function Page() {
+  const meetingManager = useMeetingManager()
 
-  const { data } = useUserInfo(username ?? '')
-  const user = data?.[0]
+  useEffect(() => {
+    const configureMeeting = async () => {
+      const response = await createMeetingWithAttendee()
 
-  const [audioInputDevices, setAudioInputDevices] = useState<MediaDeviceInfo[]>(
-    [],
-  )
-  const [videoInputDevices, setVideoInputDevices] = useState<MediaDeviceInfo[]>(
-    [],
-  )
+      const meetingResponse = {
+        ExternalMeetingId: response.externalMeetingId,
+        MediaPlacement: {
+          AudioHostUrl: response.audioHostUrl,
+          AudioFallbackUrl: response.audioFallbackUrl,
+          ScreenDataUrl: response.screenDataUrl,
+          ScreenSharingUrl: response.screenSharingUrl,
+          ScreenViewingUrl: response.screenViewingUrl,
+          SignalingUrl: response.signalingUrl,
+          TurnControlUrl: response.turnControlUrl,
+        },
+        MediaRegion: response.mediaRegion,
+        MeetingArn: response.meetingArn,
+        MeetingId: response.meetingId,
+      }
+      const attendeeResponse = response.attendees
+
+      const meetingSessionConfiguration = new MeetingSessionConfiguration(
+        meetingResponse,
+        attendeeResponse[0],
+      )
+
+      await meetingManager.join(meetingSessionConfiguration)
+    }
+
+    configureMeeting()
+  }, [])
 
   const handleJoinMeeting = async () => {
-    const response = await createMeetingWithAttendee()
-
-    const logger = new ConsoleLogger('MyLogger', LogLevel.INFO)
-    const deviceController = new DefaultDeviceController(logger)
-
-    const audioDevices = await deviceController.listAudioInputDevices()
-    const videoDevices = await deviceController.listVideoInputDevices()
-
-    setAudioInputDevices(audioDevices)
-    setVideoInputDevices(videoDevices)
-
-    const configuration = new MeetingSessionConfiguration(response)
-
-    const meetingSession = new DefaultMeetingSession(
-      configuration,
-      logger,
-      deviceController,
-    )
+    await meetingManager.start()
   }
 
   return (
-    <>
-      <Select>
-        <SelectTrigger>
-          <SelectValue
-            placeholder={
-              audioInputDevices[0]?.label ?? 'Select audio input device'
-            }
-          />
-        </SelectTrigger>
-        <SelectContent>
-          {audioInputDevices.map((device) => (
-            <SelectItem key={device.deviceId} value={device.deviceId}>
-              {device.label}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-
-      <Select>
-        <SelectTrigger>
-          <SelectValue
-            placeholder={
-              videoInputDevices[0]?.label ?? 'Select video input device'
-            }
-          />
-        </SelectTrigger>
-        <SelectContent>
-          {videoInputDevices.map((device) => (
-            <SelectItem key={device.deviceId} value={device.deviceId}>
-              {device.label}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-
+    <div className="flex flex-col gap-8">
+      <MicSelection />
+      <MicrophoneActivityPreviewBar />
+      <SpeakerSelection />
+      <CameraSelection />
+      <PreviewVideo />
       <Button onClick={handleJoinMeeting}>Start Meeting</Button>
-    </>
-  )
-}
-
-export default function Page() {
-  return (
-    <Suspense>
-      <Meet />
-    </Suspense>
+    </div>
   )
 }
