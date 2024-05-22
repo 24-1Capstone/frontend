@@ -20,7 +20,7 @@ function UserProfile() {
     <div className="flex flex-col items-center">
       <Profile user={user} />
       <Link
-        href={`/meet?user=${username}`}
+        href={`/meet/device?user=${username}`}
         className={buttonVariants({
           variant: 'outline',
         })}

@@ -1,5 +1,7 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { MeetingSessionConfiguration } from 'amazon-chime-sdk-js'
 import { useMeetingManager } from 'amazon-chime-sdk-component-library-react'
 
@@ -10,35 +12,24 @@ import { SpeakerSelection } from '@/components/speaker-selection'
 import { CameraSelection } from '@/components/camera-selection'
 import { MicrophoneActivityPreviewBar } from '@/components/microphone-activity-preview-bar'
 import { PreviewVideo } from '@/components/preview-video'
-import { useEffect } from 'react'
 
 export default function Page() {
   const meetingManager = useMeetingManager()
+  const router = useRouter()
+
+  const [meetingId, setMeetingId] = useState<string | null>(null)
 
   useEffect(() => {
     const configureMeeting = async () => {
-      const response = await createMeetingWithAttendee()
+      const { attendees, ...meetingResponse } =
+        await createMeetingWithAttendee()
+      const attendeeResponse = attendees[0]
 
-      const meetingResponse = {
-        ExternalMeetingId: response.externalMeetingId,
-        MediaPlacement: {
-          AudioHostUrl: response.audioHostUrl,
-          AudioFallbackUrl: response.audioFallbackUrl,
-          ScreenDataUrl: response.screenDataUrl,
-          ScreenSharingUrl: response.screenSharingUrl,
-          ScreenViewingUrl: response.screenViewingUrl,
-          SignalingUrl: response.signalingUrl,
-          TurnControlUrl: response.turnControlUrl,
-        },
-        MediaRegion: response.mediaRegion,
-        MeetingArn: response.meetingArn,
-        MeetingId: response.meetingId,
-      }
-      const attendeeResponse = response.attendees
+      setMeetingId(meetingResponse.externalMeetingId)
 
       const meetingSessionConfiguration = new MeetingSessionConfiguration(
         meetingResponse,
-        attendeeResponse[0],
+        attendeeResponse,
       )
 
       await meetingManager.join(meetingSessionConfiguration)
@@ -49,6 +40,7 @@ export default function Page() {
 
   const handleJoinMeeting = async () => {
     await meetingManager.start()
+    router.push(`/meet/${meetingId}}`)
   }
 
   return (
