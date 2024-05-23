@@ -15,11 +15,11 @@ function MeetingControls() {
   return (
     <div
       className={cn(
-        'absolute bottom-8 transition',
+        'absolute bottom-0 z-50 transition',
         !isUserActive && 'opacity-0',
       )}
     >
-      <div className="flex items-center justify-center rounded bg-primary/10 p-2 shadow">
+      <div className="flex items-center justify-center rounded-full bg-background/10 p-2 shadow">
         <AudioInputVFControl />
         <VideoInputTransformControl />
         {/* <AudioOutputControl />

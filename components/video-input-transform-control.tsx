@@ -278,12 +278,12 @@ function VideoInputTransformControl() {
 
   return (
     <>
-      <Button onClick={toggleVideo}>
+      <Button onClick={toggleVideo} size="icon" className="rounded-full">
         {isVideoEnabled ? <CameraIcon /> : <CameraOffIcon />}
       </Button>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline">
+          <Button variant="outline" size="icon" className="rounded-full">
             <ChevronUpIcon />
           </Button>
         </DropdownMenuTrigger>

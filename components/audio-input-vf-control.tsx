@@ -183,12 +183,17 @@ function AudioInputVFControl() {
 
   return (
     <>
-      <Button aria-label={muted ? 'Unmute' : 'Mute'} onClick={toggleMute}>
+      <Button
+        aria-label={muted ? 'Unmute' : 'Mute'}
+        onClick={toggleMute}
+        size="icon"
+        className="rounded-full"
+      >
         {muted ? <MicOffIcon /> : <MicIcon />}
       </Button>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline">
+          <Button variant="outline" size="icon" className="rounded-full">
             <ChevronUpIcon />
           </Button>
         </DropdownMenuTrigger>
