@@ -1,15 +1,13 @@
 import React from 'react'
-import {
-  AudioOutputControl,
-  useUserActivityState,
-} from 'amazon-chime-sdk-component-library-react'
+import { useUserActivityState } from 'amazon-chime-sdk-component-library-react'
 
 import { cn } from '@/lib/utils'
 import { AudioInputVFControl } from './audio-input-vf-control'
 import { EndMeetingControl } from './end-meeting-control'
 import { VideoInputTransformControl } from './video-input-transform-control'
+import { AudioOutputControl } from './audio-output-control'
 
-function MeetingControls() {
+function MeetingControls({ meetingId }: { meetingId: string }) {
   const { isUserActive } = useUserActivityState()
 
   return (
@@ -22,8 +20,8 @@ function MeetingControls() {
       <div className="flex items-center justify-center rounded-full bg-background/10 p-2 shadow">
         <AudioInputVFControl />
         <VideoInputTransformControl />
-        {/* <AudioOutputControl />
-        <EndMeetingControl /> */}
+        <AudioOutputControl />
+        <EndMeetingControl meetingId={meetingId} />
       </div>
     </div>
   )

@@ -5,4 +5,9 @@ const createMeetingWithAttendee = async () => {
   return response.data
 }
 
-export { createMeetingWithAttendee }
+const endMeeting = async (meetingId: string) => {
+  const response = await axiosInstance.delete(`/api/meetings/${meetingId}`)
+  return response.data
+}
+
+export { createMeetingWithAttendee, endMeeting }
