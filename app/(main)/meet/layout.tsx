@@ -1,4 +1,4 @@
-import { MeetingProvider } from '@/components/meeting-provider'
+import { MeetingProvider } from './provider'
 
 export default function RootLayout({
   children,
