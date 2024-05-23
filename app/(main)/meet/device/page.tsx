@@ -40,7 +40,7 @@ export default function Page() {
 
   const handleJoinMeeting = async () => {
     await meetingManager.start()
-    router.push(`/meet/${meetingId}}`)
+    router.push(`/meet/${meetingId}`)
   }
 
   return (
