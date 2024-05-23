@@ -13,7 +13,12 @@ function MeetingControls() {
   const { isUserActive } = useUserActivityState()
 
   return (
-    <div className={cn(!isUserActive && 'opacity-0', 'transition')}>
+    <div
+      className={cn(
+        'absolute bottom-8 transition',
+        !isUserActive && 'opacity-0',
+      )}
+    >
       <div className="flex items-center justify-center rounded bg-primary/10 p-2 shadow">
         <AudioInputVFControl />
         <VideoInputTransformControl />
