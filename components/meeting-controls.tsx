@@ -13,7 +13,7 @@ function MeetingControls() {
   return (
     <div
       className={cn(
-        'absolute bottom-0 z-50 transition',
+        'absolute bottom-2 z-50 transition',
         !isUserActive && 'opacity-0',
       )}
     >

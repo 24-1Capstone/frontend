@@ -38,7 +38,7 @@ function LocalVideo() {
         !isVideoEnabled && 'hidden',
       )}
     >
-      <video ref={videoEl} className="aspect-square rounded-xl" />
+      <video ref={videoEl} className="aspect-square rounded-xl shadow-xl" />
       <Badge className="absolute bottom-2 left-2">Me</Badge>
     </div>
   )
