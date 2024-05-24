@@ -1,11 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { MeetingSessionConfiguration } from 'amazon-chime-sdk-js'
 import { useMeetingManager } from 'amazon-chime-sdk-component-library-react'
 
-import { createMeetingWithAttendee } from '@/api/meet'
 import { Button } from '@/components/ui/button'
 import { MicSelection } from '@/components/mic-selection'
 import { SpeakerSelection } from '@/components/speaker-selection'
@@ -17,30 +14,9 @@ export default function Page() {
   const meetingManager = useMeetingManager()
   const router = useRouter()
 
-  const [meetingId, setMeetingId] = useState<string | null>(null)
-
-  useEffect(() => {
-    const configureMeeting = async () => {
-      const { attendees, ...meetingResponse } =
-        await createMeetingWithAttendee()
-      const attendeeResponse = attendees[0]
-
-      setMeetingId(meetingResponse.externalMeetingId)
-
-      const meetingSessionConfiguration = new MeetingSessionConfiguration(
-        meetingResponse,
-        attendeeResponse,
-      )
-
-      await meetingManager.join(meetingSessionConfiguration)
-    }
-
-    configureMeeting()
-  }, [])
-
   const handleJoinMeeting = async () => {
     await meetingManager.start()
-    router.push(`/meet/${meetingId}`)
+    router.push(`/meet/${meetingManager.meetingId}`)
   }
 
   return (
