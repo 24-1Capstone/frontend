@@ -7,7 +7,7 @@ import { EndMeetingControl } from './end-meeting-control'
 import { VideoInputTransformControl } from './video-input-transform-control'
 import { AudioOutputControl } from './audio-output-control'
 
-function MeetingControls({ meetingId }: { meetingId: string }) {
+function MeetingControls() {
   const { isUserActive } = useUserActivityState()
 
   return (
@@ -17,11 +17,11 @@ function MeetingControls({ meetingId }: { meetingId: string }) {
         !isUserActive && 'opacity-0',
       )}
     >
-      <div className="flex items-center justify-center rounded-full bg-background/10 p-2 shadow">
+      <div className="flex items-center justify-center gap-4 rounded-full bg-background/10 p-2 shadow">
         <AudioInputVFControl />
         <VideoInputTransformControl />
         <AudioOutputControl />
-        <EndMeetingControl meetingId={meetingId} />
+        <EndMeetingControl />
       </div>
     </div>
   )
