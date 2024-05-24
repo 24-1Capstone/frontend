@@ -277,7 +277,7 @@ function VideoInputTransformControl() {
   ])
 
   return (
-    <>
+    <div>
       <Button onClick={toggleVideo} size="icon" className="rounded-full">
         {isVideoEnabled ? <CameraIcon /> : <CameraOffIcon />}
       </Button>
@@ -291,7 +291,7 @@ function VideoInputTransformControl() {
           {dropdownWithVideoTransformOptions}
         </DropdownMenuContent>
       </DropdownMenu>
-    </>
+    </div>
   )
 }
 

@@ -182,7 +182,7 @@ function AudioInputVFControl() {
   }, [isVoiceFocusChecked])
 
   return (
-    <>
+    <div>
       <Button
         aria-label={muted ? 'Unmute' : 'Mute'}
         onClick={toggleMute}
@@ -199,7 +199,7 @@ function AudioInputVFControl() {
         </DropdownMenuTrigger>
         <DropdownMenuContent>{dropdownWithVFOptions}</DropdownMenuContent>
       </DropdownMenu>
-    </>
+    </div>
   )
 }
 

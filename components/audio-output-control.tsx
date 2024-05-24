@@ -66,14 +66,14 @@ function AudioOutputControl() {
   ])
 
   return (
-    <>
+    <div>
       <Button
         aria-label="Speaker"
         onClick={toggleAudio}
         size="icon"
         className="rounded-full"
       >
-        {isAudioOn ? <VolumeXIcon /> : <Volume2Icon />}
+        {isAudioOn ? <Volume2Icon /> : <VolumeXIcon />}
       </Button>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -85,7 +85,7 @@ function AudioOutputControl() {
           {dropdownWithAudioOutputOptions}
         </DropdownMenuContent>
       </DropdownMenu>
-    </>
+    </div>
   )
 }
 
