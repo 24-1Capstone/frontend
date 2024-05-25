@@ -5,41 +5,72 @@ import { MeetingSessionConfiguration } from 'amazon-chime-sdk-js'
 import { useMeetingManager } from 'amazon-chime-sdk-component-library-react'
 
 import { Button } from './ui/button'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card'
+import { Card, CardFooter, CardHeader } from './ui/card'
 import type { MeetingType } from '@/types/meeting'
-import { createAttendee } from '@/api/meet'
+import { createAttendee, endMeeting } from '@/api/meet'
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 
 function MeetingCard({ data }: { data: MeetingType }) {
   const router = useRouter()
   const meetingManager = useMeetingManager()
 
-  const handleJoin = () => {
-    const configureMeeting = async () => {
-      const meetingResponse = data
-      const attendeeResponse = await createAttendee(data.meetingId)
+  const handleJoin = async () => {
+    const meetingResponse = data
+    const attendeeResponse = await createAttendee(data.meetingId)
 
-      const meetingSessionConfiguration = new MeetingSessionConfiguration(
-        meetingResponse,
-        attendeeResponse,
-      )
+    const meetingSessionConfiguration = new MeetingSessionConfiguration(
+      meetingResponse,
+      attendeeResponse,
+    )
 
-      await meetingManager.join(meetingSessionConfiguration)
-    }
-
-    configureMeeting()
+    await meetingManager.join(meetingSessionConfiguration)
     router.push('/meet/device')
+  }
+
+  const handleCancel = async () => {
+    await endMeeting(data.meetingId)
+    alert('취소되었습니다.')
+    document.location.reload()
   }
 
   return (
     <Card>
-      <CardHeader>
-        <CardTitle>
-          {data.applyUserName} → {data.receiveUserName}
-        </CardTitle>
+      <CardHeader className="flex-row justify-between space-y-0">
+        <div className="flex flex-col items-center gap-2 text-center sm:flex-row">
+          <Avatar className="h-12 w-12">
+            <AvatarImage
+              src={`https://github.com/${data.applyUserName}.png`}
+              draggable={false}
+            />
+            <AvatarFallback>{data.applyUserName}</AvatarFallback>
+          </Avatar>
+          <div className="flex flex-col text-center sm:text-left">
+            <span className="text-sm text-foreground/60">From</span>
+            <span className="text-lg font-medium">{data.applyUserName}</span>
+          </div>
+        </div>
+        <div className="flex flex-col items-center gap-2 sm:flex-row-reverse">
+          <Avatar className="h-12 w-12">
+            <AvatarImage
+              src={`https://github.com/${data.receiveUserName}.png`}
+              draggable={false}
+            />
+            <AvatarFallback>{data.receiveUserName}</AvatarFallback>
+          </Avatar>
+          <div className="flex flex-col text-center sm:text-right">
+            <span className="text-sm text-foreground/60">To</span>
+            <span className="text-lg font-medium">{data.receiveUserName}</span>
+          </div>
+        </div>
       </CardHeader>
-      <CardContent>{data.externalMeetingId}</CardContent>
-      <CardFooter>
-        <Button onClick={handleJoin}>입장</Button>
+      <CardFooter className="flex justify-between">
+        <div>예약 정보</div>
+        <div className="flex gap-4">
+          <Button onClick={handleJoin}>입장</Button>
+          <Button variant="destructive" onClick={handleCancel}>
+            취소
+          </Button>
+        </div>
       </CardFooter>
     </Card>
   )
