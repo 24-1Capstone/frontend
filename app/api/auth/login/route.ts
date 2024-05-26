@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
         path: '/',
       })
     } catch (error) {
-      throw new Error('Invalid refresh token')
+      console.error('Invalid refresh token', error)
     }
   }
 
