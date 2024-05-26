@@ -11,12 +11,16 @@ export async function GET(request: NextRequest) {
   const response = NextResponse.redirect(url)
 
   if (refreshToken) {
-    const { data } = await getAccessToken(refreshToken.value)
+    try {
+      const { data } = await getAccessToken(refreshToken.value)
 
-    response.cookies.set('token', data.accessToken, {
-      maxAge: 3600,
-      path: '/',
-    })
+      response.cookies.set('token', data.accessToken, {
+        maxAge: 3600,
+        path: '/',
+      })
+    } catch (error) {
+      throw new Error('Invalid refresh token')
+    }
   }
 
   return response
