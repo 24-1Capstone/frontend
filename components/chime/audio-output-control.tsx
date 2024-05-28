@@ -11,13 +11,13 @@ import {
 } from 'amazon-chime-sdk-component-library-react'
 import { ChevronUpIcon, Volume2Icon, VolumeXIcon } from 'lucide-react'
 
-import { Button } from './ui/button'
+import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from './ui/dropdown-menu'
+} from '@/components/ui/dropdown-menu'
 
 function AudioOutputControl() {
   const logger = useLogger()

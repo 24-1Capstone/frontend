@@ -2,10 +2,10 @@ import React from 'react'
 import { useUserActivityState } from 'amazon-chime-sdk-component-library-react'
 
 import { cn } from '@/lib/utils'
-import { AudioInputVFControl } from './audio-input-vf-control'
-import { EndMeetingControl } from './end-meeting-control'
-import { VideoInputTransformControl } from './video-input-transform-control'
-import { AudioOutputControl } from './audio-output-control'
+import { AudioInputVFControl } from '@/components/chime/audio-input-vf-control'
+import { EndMeetingControl } from '@/components/chime/end-meeting-control'
+import { VideoInputTransformControl } from '@/components/chime/video-input-transform-control'
+import { AudioOutputControl } from '@/components/chime/audio-output-control'
 
 function MeetingControls() {
   const { isUserActive } = useUserActivityState()
