@@ -1,4 +1,4 @@
-import axiosInstance from './instance'
+import axiosInstance from '@/api/instance'
 import type { MeetingType } from '@/types/meeting'
 
 const getAllMeetings = async (): Promise<MeetingType[]> => {

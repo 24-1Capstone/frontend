@@ -1,4 +1,4 @@
-import Providers from './provider'
+import Providers from '@/app/(chime)/meet/[meetingId]/provider'
 
 export default function RootLayout({
   children,

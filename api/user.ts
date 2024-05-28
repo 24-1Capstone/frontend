@@ -1,4 +1,4 @@
-import axiosInstance from './instance'
+import axiosInstance from '@/api/instance'
 import type { UserType } from '@/types/user'
 import type { ProfileType } from '@/types/profile'
 

@@ -3,7 +3,7 @@ import { GeistSans } from 'geist/font/sans'
 
 import '@/styles/globals.css'
 import { cn } from '@/lib/utils'
-import { QueryProvider } from '@/components/query-provider'
+import { QueryProvider } from '@/app/provider'
 
 const fontSans = GeistSans
 

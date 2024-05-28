@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation'
 import { Home, Calendar, User, Settings } from 'lucide-react'
 
-import { Tab, TabBar } from '@/components/ui/tab-bar'
+import { Tab, TabBar } from '@/components/layout/tab-bar'
 
 const TABS = [
   { icon: Home, href: '/home', title: '홈' },

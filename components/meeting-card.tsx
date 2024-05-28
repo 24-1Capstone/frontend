@@ -4,11 +4,11 @@ import { useRouter } from 'next/navigation'
 import { MeetingSessionConfiguration } from 'amazon-chime-sdk-js'
 import { useMeetingManager } from 'amazon-chime-sdk-component-library-react'
 
-import { Button } from './ui/button'
-import { Card, CardFooter, CardHeader } from './ui/card'
+import { Button } from '@/components/ui/button'
+import { Card, CardFooter, CardHeader } from '@/components/ui/card'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import type { MeetingType } from '@/types/meeting'
 import { createAttendee, endMeeting } from '@/api/meet'
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 
 function MeetingCard({ data }: { data: MeetingType }) {
   const router = useRouter()

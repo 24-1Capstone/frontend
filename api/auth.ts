@@ -1,4 +1,4 @@
-import axiosInstance from './instance'
+import axiosInstance from '@/api/instance'
 
 const getAccessToken = async (refreshToken: string) => {
   return await axiosInstance.post('/api/token', { refreshToken })

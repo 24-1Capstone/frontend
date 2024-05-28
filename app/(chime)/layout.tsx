@@ -1,4 +1,4 @@
-import { MeetingProvider } from './provider'
+import { MeetingProvider } from '@/app/(chime)/provider'
 
 export default function RootLayout({
   children,

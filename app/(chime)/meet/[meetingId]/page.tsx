@@ -1,8 +1,8 @@
 'use client'
 
-import { LocalVideo } from '@/components/local-video'
-import { MeetingControls } from '@/components/meeting-controls'
-import { RemoteVideos } from '@/components/remote-video'
+import { LocalVideo } from '@/components/chime/local-video'
+import { RemoteVideos } from '@/components/chime/remote-video'
+import { MeetingControls } from '@/components/chime/meeting-controls'
 
 export default function Page() {
   return (
