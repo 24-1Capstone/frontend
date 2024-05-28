@@ -3,7 +3,7 @@
 import { usePathname, useRouter } from 'next/navigation'
 import { ChevronLeft } from 'lucide-react'
 
-import { AppBar, Center, End, Start } from '@/components/ui/app-bar'
+import { AppBar, Center, End, Start } from '@/components/layout/app-bar'
 import { Button } from '@/components/ui/button'
 import { LogOutButton } from '@/components/log-out-button'
 
