@@ -6,19 +6,16 @@ function Tab({
   href,
   className,
   children,
-  selected,
 }: {
   href: string
   className?: string
   children?: React.ReactNode
-  selected?: boolean
 }) {
   return (
     <Link
       href={href}
       className={cn(
         'flex flex-col items-center gap-2 border-t p-3 text-xs',
-        selected && 'border-t-2 border-green-600',
         className,
       )}
     >
