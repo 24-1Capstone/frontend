@@ -13,7 +13,8 @@ export async function middleware(req: NextRequest, event: NextFetchEvent) {
       pathname.startsWith('/users') ||
       pathname.startsWith('/my-chat') ||
       pathname.startsWith('/profile') ||
-      pathname.startsWith('/settings')
+      pathname.startsWith('/settings') ||
+      pathname.startsWith('/meet')
     )
       return NextResponse.redirect(new URL('/', req.url))
   }
