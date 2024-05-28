@@ -8,7 +8,8 @@ import {
   useMeetingManager,
   useVideoInputs,
 } from 'amazon-chime-sdk-component-library-react'
-import { Badge } from './ui/badge'
+
+import { VideoTile } from '@/components/chime/video-tile'
 
 function PreviewVideo() {
   const logger = useLogger()
@@ -45,12 +46,7 @@ function PreviewVideo() {
     startPreview()
   }, [audioVideo, selectedDevice])
 
-  return (
-    <div className="relative">
-      <video ref={videoEl} className="rounded-xl" />
-      <Badge className="absolute bottom-2 left-2">Preview</Badge>
-    </div>
-  )
+  return <VideoTile label="Preview" ref={videoEl} />
 }
 
 export { PreviewVideo }

@@ -8,7 +8,7 @@ import {
 } from 'amazon-chime-sdk-component-library-react'
 
 import { cn } from '@/lib/utils'
-import { Badge } from './ui/badge'
+import { VideoTile } from '@/components/chime/video-tile'
 
 function LocalVideo() {
   const { tileId, isVideoEnabled } = useLocalVideo()
@@ -32,15 +32,14 @@ function LocalVideo() {
   }, [audioVideo, tileId, isVideoEnabled])
 
   return (
-    <div
+    <VideoTile
       className={cn(
-        'absolute right-4 top-4 aspect-square w-1/3',
+        'absolute right-4 top-4 aspect-square w-1/3 shadow-xl',
         !isVideoEnabled && 'hidden',
       )}
-    >
-      <video ref={videoEl} className="aspect-square rounded-xl shadow-xl" />
-      <Badge className="absolute bottom-2 left-2">Me</Badge>
-    </div>
+      label="Me"
+      ref={videoEl}
+    />
   )
 }
 

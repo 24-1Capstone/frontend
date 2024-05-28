@@ -7,7 +7,8 @@ import {
   useRemoteVideoTileState,
   useRosterState,
 } from 'amazon-chime-sdk-component-library-react'
-import { Badge } from './ui/badge'
+
+import { VideoTile } from '@/components/chime/video-tile'
 
 function RemoteVideo({ name, tileId }: { name?: string; tileId: number }) {
   const audioVideo = useAudioVideo()
@@ -29,12 +30,7 @@ function RemoteVideo({ name, tileId }: { name?: string; tileId: number }) {
     }
   }, [audioVideo, tileId])
 
-  return (
-    <div className="relative h-full w-full">
-      <video ref={videoEl} className="h-full w-full rounded-xl" />
-      <Badge className="absolute bottom-2 left-2">{name}</Badge>
-    </div>
-  )
+  return <VideoTile className="h-full w-full" label={name} ref={videoEl} />
 }
 
 function RemoteVideos() {
