@@ -5,7 +5,7 @@ import { ChevronLeft } from 'lucide-react'
 
 import { AppBar, Center, End, Start } from '@/components/layout/app-bar'
 import { Button } from '@/components/ui/button'
-import { LogOutButton } from '@/components/log-out-button'
+import { ProfileButton } from '@/components/profile-button'
 
 const title: { [key: string]: string } = {
   users: '사용자',
@@ -33,7 +33,7 @@ function TopAppBar() {
         <h2 className="text-xl font-bold">{title[routes[0]]}</h2>
       </Center>
       <End>
-        <LogOutButton />
+        <ProfileButton />
       </End>
     </AppBar>
   )
