@@ -1,15 +1,14 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import { MessageCircleIcon, UserIcon, SettingsIcon } from 'lucide-react'
+import { MessageCircleIcon, UsersRoundIcon, WrenchIcon } from 'lucide-react'
 
 import { Tab, TabBar } from '@/components/layout/tab-bar'
 
 const TABS = [
-  { icon: UserIcon, href: '/users', title: '사용자' },
+  { icon: UsersRoundIcon, href: '/users', title: '사용자' },
   { icon: MessageCircleIcon, href: '/my-chat', title: '나의 커피챗' },
-  { icon: UserIcon, href: '/profile', title: '프로필' },
-  { icon: SettingsIcon, href: '/settings', title: '설정' },
+  { icon: WrenchIcon, href: '/settings', title: '설정' },
 ]
 
 function BottomTabBar() {
