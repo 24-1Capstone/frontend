@@ -3,14 +3,7 @@ import {
   useLogger,
   useMeetingManager,
 } from 'amazon-chime-sdk-component-library-react'
-
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from './ui/select'
+import { DeviceSelection } from '@/components/chime/device-selection'
 
 function SpeakerSelection() {
   const logger = useLogger()
@@ -26,18 +19,11 @@ function SpeakerSelection() {
   }
 
   return (
-    <Select onValueChange={handleSelect}>
-      <SelectTrigger>
-        <SelectValue placeholder={selectedDevice?.toString()} />
-      </SelectTrigger>
-      <SelectContent>
-        {devices.map((device) => (
-          <SelectItem key={device.deviceId} value={device.deviceId}>
-            {device.label}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
+    <DeviceSelection
+      onValueChange={handleSelect}
+      devices={devices}
+      placeholder={selectedDevice?.toString() || 'Select a speaker'}
+    />
   )
 }
 
