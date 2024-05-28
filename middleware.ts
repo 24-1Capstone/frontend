@@ -7,11 +7,11 @@ export async function middleware(req: NextRequest, event: NextFetchEvent) {
 
   if (session) {
     if (pathname === '/')
-      return NextResponse.redirect(new URL('/home', req.url))
+      return NextResponse.redirect(new URL('/users', req.url))
   } else {
     if (
-      pathname.startsWith('/home') ||
-      pathname.startsWith('/calendar') ||
+      pathname.startsWith('/users') ||
+      pathname.startsWith('/my-chat') ||
       pathname.startsWith('/profile') ||
       pathname.startsWith('/settings')
     )

@@ -8,8 +8,8 @@ import { Button } from '@/components/ui/button'
 import { LogOutButton } from '@/components/log-out-button'
 
 const title: { [key: string]: string } = {
-  home: '홈',
-  calendar: '일정',
+  users: '사용자',
+  'my-chat': '나의 커피챗',
   profile: '프로필',
   settings: '설정',
 }

@@ -6,7 +6,7 @@ import type { UserType } from '@/types/user'
 function UserCard({ user }: { user: UserType }) {
   return (
     <Link
-      href={`/home/details?user=${user.login}`}
+      href={`/users/details?user=${user.login}`}
       className="flex gap-6 rounded-xl p-4 transition hover:bg-foreground/5"
     >
       <Avatar className="h-16 w-16">
