@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { useUserActivityState } from 'amazon-chime-sdk-component-library-react'
 

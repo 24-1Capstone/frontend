@@ -1,5 +1,3 @@
-'use client'
-
 import { LocalVideo } from '@/components/chime/local-video'
 import { RemoteVideos } from '@/components/chime/remote-video'
 import { MeetingControls } from '@/components/chime/meeting-controls'
