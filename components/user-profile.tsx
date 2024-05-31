@@ -14,11 +14,13 @@ function UserProfile() {
   const username = searchParams.get('user')
 
   const { data: myInfo } = useMyInfo()
-  const { data: userInfo } = useUserInfo(username ?? '')
+  const { data: userInfo, isLoading } = useUserInfo(username ?? '')
 
   const handleReserveMeeting = async () => {
-    await createMeeting(myInfo?.[0].login ?? '', userInfo?.[0].login ?? '')
-    alert('커피챗 신청이 완료되었습니다.')
+    if (!isLoading) {
+      await createMeeting(myInfo?.[0].login ?? '', userInfo?.[0].login ?? '')
+      alert('커피챗 신청이 완료되었습니다.')
+    }
   }
 
   return (
