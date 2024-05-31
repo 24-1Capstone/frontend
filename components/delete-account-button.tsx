@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
 
-import { deleteAccount } from '@/api/auth'
+import { deleteAccount, logOut } from '@/api/auth'
 import { Button } from '@/components/ui/button'
 import {
   Drawer,
@@ -19,12 +19,13 @@ import {
 function DeleteAccountButton() {
   const router = useRouter()
 
-  const handleDeleteAccount = () => {
-    deleteAccount().then(() => {
-      Cookies.remove('token')
-      Cookies.remove('refresh_token')
-      router.push('/')
-    })
+  const handleDeleteAccount = async () => {
+    await deleteAccount()
+    await logOut()
+
+    Cookies.remove('token')
+    Cookies.remove('refresh_token')
+    router.push('/')
   }
 
   return (
