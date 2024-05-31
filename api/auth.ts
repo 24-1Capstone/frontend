@@ -8,4 +8,8 @@ const logOut = async () => {
   return await axiosInstance.post('/logout')
 }
 
-export { getAccessToken, logOut }
+const deleteAccount = async () => {
+  return await axiosInstance.delete('/api/user/resign')
+}
+
+export { getAccessToken, logOut, deleteAccount }
