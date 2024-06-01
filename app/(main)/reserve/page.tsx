@@ -1,5 +1,6 @@
 'use client'
 
+import { useSearchParams } from 'next/navigation'
 import { format, isPast, isWeekend } from 'date-fns'
 import { ko } from 'date-fns/locale'
 import { useForm } from 'react-hook-form'
@@ -8,6 +9,7 @@ import { z } from 'zod'
 import { CalendarIcon } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
+import { useUserInfo } from '@/hooks/queries/use-user-info'
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 import {
@@ -31,6 +33,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 const FormSchema = z.object({
   date: z.date({ required_error: '날짜를 선택해주세요' }),
@@ -44,18 +47,40 @@ const FormSchema = z.object({
 })
 
 export default function Page() {
+  const searchParams = useSearchParams()
+  const username = searchParams.get('user')
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   })
+
+  const { data: userInfo, isLoading } = useUserInfo(username ?? '')
 
   const onSubmit = (data: z.infer<typeof FormSchema>) => {
     alert(JSON.stringify(data, null, 2))
   }
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col items-center gap-6">
+      <div className="my-8 flex items-center gap-4">
+        <Avatar className="h-16 w-16">
+          <AvatarImage src={userInfo?.[0].avatar_url} draggable={false} />
+          <AvatarFallback>{userInfo?.[0].login}</AvatarFallback>
+        </Avatar>
+        <p>
+          <span className="font-semibold">
+            {userInfo?.[0].name}({userInfo?.[0].login})
+          </span>
+          님께
+          <br />
+          커피챗을 신청합니다.
+        </p>
+      </div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="w-full space-y-8"
+        >
           <FormField
             control={form.control}
             name="date"
@@ -147,8 +172,13 @@ export default function Page() {
               </FormItem>
             )}
           />
-          <Button type="submit" size="lg" className="w-full">
-            예약하기
+          <Button
+            type="submit"
+            size="lg"
+            className="w-full"
+            disabled={isLoading}
+          >
+            신청하기
           </Button>
         </form>
       </Form>
