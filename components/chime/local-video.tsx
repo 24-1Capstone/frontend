@@ -34,7 +34,7 @@ function LocalVideo() {
   return (
     <VideoTile
       className={cn(
-        'absolute right-4 top-4 aspect-square w-1/3 shadow-xl',
+        'absolute right-4 top-4 w-1/3 shadow-xl',
         !isVideoEnabled && 'hidden',
       )}
       label="Me"
