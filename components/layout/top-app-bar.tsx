@@ -10,6 +10,7 @@ import { ProfileButton } from '@/components/profile-button'
 const title: { [key: string]: string } = {
   users: '사용자',
   'my-chat': '나의 커피챗',
+  reserve: '커피챗 예약',
   profile: '프로필',
   settings: '설정',
 }
