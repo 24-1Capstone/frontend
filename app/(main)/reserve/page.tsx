@@ -107,7 +107,9 @@ export default function Page() {
                   defaultValue={field.value}
                 >
                   <FormControl>
-                    <SelectTrigger>
+                    <SelectTrigger
+                      className={cn(!field.value && 'text-muted-foreground')}
+                    >
                       <SelectValue placeholder="시간을 선택해주세요." />
                     </SelectTrigger>
                   </FormControl>
