@@ -3,16 +3,17 @@
 import { useRouter } from 'next/navigation'
 import { MeetingSessionConfiguration } from 'amazon-chime-sdk-js'
 import { useMeetingManager } from 'amazon-chime-sdk-component-library-react'
-import { VariantProps } from 'class-variance-authority'
+import { isToday } from 'date-fns'
 
 import { formatDateTime } from '@/lib/date'
-import { createAttendee, endMeeting } from '@/api/meet'
-import { Badge, BadgeProps, badgeVariants } from '@/components/ui/badge'
+import { createAttendee, createMeeting } from '@/api/meet'
+import { deleteReservation } from '@/api/reserve'
+import { useMyInfo } from '@/hooks/queries/use-my-info'
+import { Badge, BadgeProps } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardFooter, CardHeader } from '@/components/ui/card'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import type { ReservationType } from '@/types/reservation'
-import { deleteReservation } from '@/api/reserve'
 
 const STATUS: Record<
   ReservationType['reservationStatus'],
@@ -27,18 +28,24 @@ function AppliedReservationCard({ data }: { data: ReservationType }) {
   const router = useRouter()
   const meetingManager = useMeetingManager()
 
-  // const handleJoin = async () => {
-  //   const meetingResponse = data
-  //   const attendeeResponse = await createAttendee(data.meetingId)
+  const { data: myInfo } = useMyInfo()
 
-  //   const meetingSessionConfiguration = new MeetingSessionConfiguration(
-  //     meetingResponse,
-  //     attendeeResponse,
-  //   )
+  const handleJoin = async () => {
+    const meetingResponse = await createMeeting(
+      myInfo?.[0].login ?? '',
+      data.receiveUserName,
+    )
+    console.log(meetingResponse)
+    const attendeeResponse = await createAttendee(meetingResponse.meetingId)
 
-  //   await meetingManager.join(meetingSessionConfiguration)
-  //   router.push('/meet/device')
-  // }
+    const meetingSessionConfiguration = new MeetingSessionConfiguration(
+      meetingResponse,
+      attendeeResponse,
+    )
+
+    await meetingManager.join(meetingSessionConfiguration)
+    router.push('/meet/device')
+  }
 
   const handleCancel = async () => {
     try {
@@ -53,12 +60,6 @@ function AppliedReservationCard({ data }: { data: ReservationType }) {
       alert('취소에 실패했습니다.')
     }
   }
-
-  // const handleCancel = async () => {
-  //   await endMeeting(data.meetingId)
-  //   alert('취소되었습니다.')
-  //   document.location.reload()
-  // }
 
   return (
     <Card>
@@ -100,10 +101,15 @@ function AppliedReservationCard({ data }: { data: ReservationType }) {
           </span>
         </div>
         <div className="flex gap-4">
-          {/* <Button onClick={handleJoin}>입장</Button>*/}
-          <Button variant="destructive" onClick={handleCancel}>
-            취소
-          </Button>
+          {data.reservationStatus !== 'CONFIRMED' ? (
+            <Button variant="destructive" onClick={handleCancel}>
+              취소
+            </Button>
+          ) : (
+            isToday(data.startTime) && (
+              <Button onClick={handleJoin}>입장</Button>
+            )
+          )}
         </div>
       </CardFooter>
     </Card>

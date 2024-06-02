@@ -3,10 +3,12 @@
 import { useRouter } from 'next/navigation'
 import { MeetingSessionConfiguration } from 'amazon-chime-sdk-js'
 import { useMeetingManager } from 'amazon-chime-sdk-component-library-react'
+import { isToday } from 'date-fns'
 
 import { formatDateTime } from '@/lib/date'
-import { deleteReservation } from '@/api/reserve'
-import { createAttendee, endMeeting } from '@/api/meet'
+import { createAttendee, createMeeting } from '@/api/meet'
+import { acceptReservation, rejectReservation } from '@/api/reserve'
+import { useMyInfo } from '@/hooks/queries/use-my-info'
 import { Badge, BadgeProps } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardFooter, CardHeader } from '@/components/ui/card'
@@ -26,38 +28,52 @@ function ReceivedReservationCard({ data }: { data: ReservationType }) {
   const router = useRouter()
   const meetingManager = useMeetingManager()
 
-  // const handleJoin = async () => {
-  //   const meetingResponse = data
-  //   const attendeeResponse = await createAttendee(data.meetingId)
+  const { data: myInfo } = useMyInfo()
 
-  //   const meetingSessionConfiguration = new MeetingSessionConfiguration(
-  //     meetingResponse,
-  //     attendeeResponse,
-  //   )
-
-  //   await meetingManager.join(meetingSessionConfiguration)
-  //   router.push('/meet/device')
-  // }
-
-  const handleCancel = async () => {
+  const handleAccept = async () => {
     try {
-      const response = await deleteReservation(data.id)
+      const response = await acceptReservation(data.id)
 
       if (response === 200) {
-        alert('취소되었습니다.')
+        alert(`${data.applyUserName}님의 요청을 승인했습니다.`)
         document.location.reload()
       }
     } catch (error) {
       console.error(error)
-      alert('취소에 실패했습니다.')
+      alert('승인에 실패했습니다.')
     }
   }
 
-  // const handleCancel = async () => {
-  //   await endMeeting(data.meetingId)
-  //   alert('취소되었습니다.')
-  //   document.location.reload()
-  // }
+  const handleReject = async () => {
+    try {
+      const response = await rejectReservation(data.id)
+
+      if (response === 200) {
+        alert(`${data.applyUserName}님의 요청을 거절했습니다.`)
+        document.location.reload()
+      }
+    } catch (error) {
+      console.error(error)
+      alert('거절에 실패했습니다.')
+    }
+  }
+
+  const handleJoin = async () => {
+    const meetingResponse = await createMeeting(
+      myInfo?.[0].login ?? '',
+      data.receiveUserName,
+    )
+    console.log(meetingResponse)
+    const attendeeResponse = await createAttendee(meetingResponse.meetingId)
+
+    const meetingSessionConfiguration = new MeetingSessionConfiguration(
+      meetingResponse,
+      attendeeResponse,
+    )
+
+    await meetingManager.join(meetingSessionConfiguration)
+    router.push('/meet/device')
+  }
 
   return (
     <Card>
@@ -99,10 +115,19 @@ function ReceivedReservationCard({ data }: { data: ReservationType }) {
           </span>
         </div>
         <div className="flex gap-4">
-          {/* <Button onClick={handleJoin}>입장</Button> */}
-          <Button variant="destructive" onClick={handleCancel}>
-            취소
-          </Button>
+          {data.reservationStatus === 'PROGRESSING' && (
+            <>
+              <Button variant="success" onClick={handleAccept}>
+                승인
+              </Button>
+              <Button variant="destructive" onClick={handleReject}>
+                거절
+              </Button>
+            </>
+          )}
+          {isToday(data.startTime) && (
+            <Button onClick={handleJoin}>입장</Button>
+          )}
         </div>
       </CardFooter>
     </Card>
