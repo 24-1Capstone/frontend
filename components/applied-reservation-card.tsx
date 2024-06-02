@@ -35,7 +35,6 @@ function AppliedReservationCard({ data }: { data: ReservationType }) {
       myInfo?.[0].login ?? '',
       data.receiveUserName,
     )
-    console.log(meetingResponse)
     const attendeeResponse = await createAttendee(meetingResponse.meetingId)
 
     const meetingSessionConfiguration = new MeetingSessionConfiguration(
