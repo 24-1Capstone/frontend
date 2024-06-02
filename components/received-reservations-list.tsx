@@ -12,8 +12,6 @@ function ReceivedReservationsList() {
     (reservation) => reservation.receiveUserName === myInfo?.[0].login,
   )
 
-  console.log(receivedReservations)
-
   return receivedReservations?.length === 0 ? (
     <div className="py-4 text-foreground/30">신청받은 커피챗이 없습니다.</div>
   ) : (
