@@ -9,12 +9,12 @@ const getAllMeetings = async (): Promise<MeetingType[]> => {
 const createMeeting = async (
   applyUserName: string,
   receiveUserName: string,
-) => {
+): Promise<MeetingType> => {
   const response = await axiosInstance.post(`/api/meetings`, {
     applyUserName,
     receiveUserName,
   })
-  return response.status
+  return response.data
 }
 
 const createAttendee = async (meetingId: string) => {
