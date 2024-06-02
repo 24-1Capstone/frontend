@@ -1,6 +1,6 @@
 'use client'
 
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { format, isPast, isWeekend } from 'date-fns'
 import { ko } from 'date-fns/locale'
 import { useForm } from 'react-hook-form'
@@ -9,6 +9,7 @@ import { z } from 'zod'
 import { CalendarIcon } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
+import { calcEndTime, combineDateTime } from '@/lib/date'
 import { useUserInfo } from '@/hooks/queries/use-user-info'
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
@@ -34,6 +35,7 @@ import {
 } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { createReservation } from '@/api/reserve'
 
 const FormSchema = z.object({
   date: z.date({ required_error: '날짜를 선택해주세요' }),
@@ -47,6 +49,7 @@ const FormSchema = z.object({
 })
 
 export default function Page() {
+  const router = useRouter()
   const searchParams = useSearchParams()
   const username = searchParams.get('user')
 
@@ -56,8 +59,27 @@ export default function Page() {
 
   const { data: userInfo, isLoading } = useUserInfo(username ?? '')
 
-  const onSubmit = (data: z.infer<typeof FormSchema>) => {
-    alert(JSON.stringify(data, null, 2))
+  const onSubmit = async (data: z.infer<typeof FormSchema>) => {
+    const content = data.message ?? ''
+    const startTime = combineDateTime(data.date, data.time)
+    const endTime = calcEndTime(startTime)
+    const receiveUsername = username!
+
+    try {
+      const response = await createReservation(
+        content,
+        startTime,
+        endTime,
+        receiveUsername,
+      )
+
+      if (response === 200) {
+        alert('신청이 완료되었습니다.')
+        router.push('/my-chat')
+      }
+    } catch (error) {
+      alert(`신청에 실패했습니다. 다시 시도해주세요. ${error}`)
+    }
   }
 
   return (
@@ -138,7 +160,7 @@ export default function Page() {
                       <SelectValue placeholder="시간을 선택해주세요." />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent>
+                  <SelectContent className="h-36">
                     <SelectItem value="10:00">10:00</SelectItem>
                     <SelectItem value="11:00">11:00</SelectItem>
                     <SelectItem value="12:00">12:00</SelectItem>
