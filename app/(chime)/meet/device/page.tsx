@@ -21,11 +21,20 @@ export default function Page() {
 
   return (
     <div className="flex flex-col gap-8">
-      <MicSelection />
-      <MicrophoneActivityPreviewBar />
-      <SpeakerSelection />
-      <CameraSelection />
-      <PreviewVideo />
+      <div className="flex flex-col gap-2">
+        <h3 className="text-2xl font-bold">마이크</h3>
+        <MicSelection />
+        <MicrophoneActivityPreviewBar />
+      </div>
+      <div className="flex flex-col gap-2">
+        <h3 className="text-2xl font-bold">스피커</h3>
+        <SpeakerSelection />
+      </div>
+      <div className="flex flex-col gap-2">
+        <h3 className="text-2xl font-bold">카메라</h3>
+        <CameraSelection />
+        <PreviewVideo />
+      </div>
       <Button onClick={handleJoinMeeting}>커피챗 참가하기</Button>
     </div>
   )
