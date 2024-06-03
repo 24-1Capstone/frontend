@@ -23,7 +23,7 @@ function MicSelection() {
     <DeviceSelection
       onValueChange={handleSelect}
       devices={devices}
-      placeholder={selectedDevice?.toString() || 'Select a microphone'}
+      placeholder={selectedDevice?.toString() || '마이크를 선택해주세요.'}
     />
   )
 }

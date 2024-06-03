@@ -25,7 +25,7 @@ const useMeetingEndRedirect = () => {
         type: ActionType.ADD,
         payload: {
           severity: Severity.INFO,
-          message: 'The meeting was ended by another attendee',
+          message: '커피챗이 상대방에 의해 종료되었습니다.',
           autoClose: true,
           replaceAll: true,
         },

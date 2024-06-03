@@ -26,7 +26,7 @@ export default function Page() {
       <SpeakerSelection />
       <CameraSelection />
       <PreviewVideo />
-      <Button onClick={handleJoinMeeting}>Start Meeting</Button>
+      <Button onClick={handleJoinMeeting}>커피챗 참가하기</Button>
     </div>
   )
 }

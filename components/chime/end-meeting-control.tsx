@@ -45,10 +45,10 @@ function EndMeetingControl() {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem onClick={endMeetingForAll}>
-          End meeting for all
+          커피챗 종료하기
         </DropdownMenuItem>
         <DropdownMenuItem onClick={leaveMeeting}>
-          Leave Meeting
+          커피챗 나가기
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -23,7 +23,7 @@ function CameraSelection() {
     <DeviceSelection
       onValueChange={handleSelect}
       devices={devices}
-      placeholder={selectedDevice?.toString() || 'Select a camera'}
+      placeholder={selectedDevice?.toString() || '카메라를 선택해주세요.'}
     />
   )
 }

@@ -22,7 +22,7 @@ function SpeakerSelection() {
     <DeviceSelection
       onValueChange={handleSelect}
       devices={devices}
-      placeholder={selectedDevice?.toString() || 'Select a speaker'}
+      placeholder={selectedDevice?.toString() || '스피커를 선택해주세요.'}
     />
   )
 }

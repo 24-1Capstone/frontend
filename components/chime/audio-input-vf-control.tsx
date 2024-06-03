@@ -122,9 +122,7 @@ function AudioInputVFControl() {
           >
             <>
               {isLoading && <LoaderIcon className="h-6 w-6 animate-spin" />}
-              {isVoiceFocusEnabled
-                ? 'Amazon Voice Focus enabled'
-                : 'Enable Amazon Voice Focus'}
+              배경 소음 억제
             </>
           </DropdownMenuCheckboxItem>
         )

@@ -231,7 +231,7 @@ function VideoInputTransformControl() {
           >
             <>
               {isLoading && <LoaderIcon className="h-6 w-6 animate-spin" />}
-              Enable Background Blur
+              흐린 배경
             </>
           </DropdownMenuCheckboxItem>
         )
@@ -251,7 +251,7 @@ function VideoInputTransformControl() {
           >
             <>
               {isLoading && <LoaderIcon className="h-6 w-6 animate-spin" />}
-              Enable Background Replacement
+              가상 배경
             </>
           </DropdownMenuCheckboxItem>
         )
