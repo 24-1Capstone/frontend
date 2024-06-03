@@ -1,4 +1,4 @@
-interface MeetingType {
+interface IMeeting {
   externalMeetingId: string
   mediaPlacement: {
     audioFallbackUrl: string
@@ -17,4 +17,4 @@ interface MeetingType {
   receiveUserName: string
 }
 
-export type { MeetingType }
+export type { IMeeting }

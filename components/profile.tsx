@@ -4,9 +4,9 @@ import { GithubIcon, GlobeIcon, TwitterIcon } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { buttonVariants } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import type { ProfileType } from '@/types/profile'
+import type { IProfile } from '@/types/profile'
 
-function Profile({ user }: { user?: ProfileType }) {
+function Profile({ user }: { user?: IProfile }) {
   return (
     <div className="flex flex-col items-center gap-6 p-8 font-medium">
       <Avatar className="h-52 w-52">

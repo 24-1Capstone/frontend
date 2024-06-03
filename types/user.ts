@@ -1,4 +1,4 @@
-interface UserType {
+interface IUser {
   avatar_url: string
   events_url: string
   followers_url: string
@@ -18,4 +18,4 @@ interface UserType {
   url: string
 }
 
-export type { UserType }
+export type { IUser }

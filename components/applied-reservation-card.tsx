@@ -13,10 +13,10 @@ import { Badge, BadgeProps } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardFooter, CardHeader } from '@/components/ui/card'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import type { ReservationType } from '@/types/reservation'
+import type { IReservation } from '@/types/reservation'
 
 const STATUS: Record<
-  ReservationType['reservationStatus'],
+  IReservation['reservationStatus'],
   [BadgeProps['variant'], string]
 > = {
   PROGRESSING: ['default', '대기'],
@@ -24,7 +24,7 @@ const STATUS: Record<
   REFUSE: ['destructive', '거절'],
 }
 
-function AppliedReservationCard({ data }: { data: ReservationType }) {
+function AppliedReservationCard({ data }: { data: IReservation }) {
   const router = useRouter()
   const meetingManager = useMeetingManager()
 

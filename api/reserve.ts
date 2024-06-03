@@ -1,5 +1,5 @@
 import axiosInstance from '@/api/instance'
-import type { ReservationType } from '@/types/reservation'
+import type { IReservation } from '@/types/reservation'
 
 const rejectReservation = async (id: number) => {
   const response = await axiosInstance.post(`/api/reservation/refuse/${id}`)
@@ -31,7 +31,7 @@ const createReservation = async (
   return response.status
 }
 
-const getAllReservations = async (): Promise<ReservationType[]> => {
+const getAllReservations = async (): Promise<IReservation[]> => {
   const response = await axiosInstance.get('/api/reservation')
   return response.data
 }

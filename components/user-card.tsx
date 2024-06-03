@@ -1,9 +1,9 @@
 import Link from 'next/link'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import type { UserType } from '@/types/user'
+import type { IUser } from '@/types/user'
 
-function UserCard({ user }: { user: UserType }) {
+function UserCard({ user }: { user: IUser }) {
   return (
     <Link
       href={`/users/details?user=${user.login}`}

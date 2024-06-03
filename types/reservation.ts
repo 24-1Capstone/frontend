@@ -1,4 +1,4 @@
-interface ReservationType {
+interface IReservation {
   id: number
   content: string
   createdAt: string
@@ -9,4 +9,4 @@ interface ReservationType {
   reservationStatus: 'CONFIRMED' | 'PROGRESSING' | 'REFUSE'
 }
 
-export type { ReservationType }
+export type { IReservation }

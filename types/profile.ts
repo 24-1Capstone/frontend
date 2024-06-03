@@ -1,4 +1,4 @@
-interface ProfileType {
+interface IProfile {
   login: string
   id: number
   node_id: string
@@ -33,4 +33,4 @@ interface ProfileType {
   updated_at: string
 }
 
-export type { ProfileType }
+export type { IProfile }

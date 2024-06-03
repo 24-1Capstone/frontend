@@ -1,7 +1,7 @@
 import axiosInstance from '@/api/instance'
-import type { MeetingType } from '@/types/meeting'
+import type { IMeeting } from '@/types/meeting'
 
-const getAllMeetings = async (): Promise<MeetingType[]> => {
+const getAllMeetings = async (): Promise<IMeeting[]> => {
   const response = await axiosInstance.get(`/api/meetings`)
   return response.data
 }
@@ -9,7 +9,7 @@ const getAllMeetings = async (): Promise<MeetingType[]> => {
 const createMeeting = async (
   applyUserName: string,
   receiveUserName: string,
-): Promise<MeetingType> => {
+): Promise<IMeeting> => {
   const response = await axiosInstance.post(`/api/meetings`, {
     applyUserName,
     receiveUserName,
