@@ -7,10 +7,11 @@ import { AppBar, Center, End, Start } from '@/components/layout/app-bar'
 import { Button } from '@/components/ui/button'
 import { ProfileButton } from '@/components/profile-button'
 
-const title: { [key: string]: string } = {
+const TITLE: { [key: string]: string } = {
   users: '사용자',
   'my-chat': '나의 커피챗',
   reserve: '커피챗 신청',
+  meet: '장치 설정',
   profile: '프로필',
   settings: '설정',
 }
@@ -31,7 +32,7 @@ function TopAppBar() {
         )}
       </Start>
       <Center>
-        <h2 className="text-xl font-bold">{title[routes[0]]}</h2>
+        <h2 className="text-xl font-bold">{TITLE[routes[0]]}</h2>
       </Center>
       <End>
         <ProfileButton />
