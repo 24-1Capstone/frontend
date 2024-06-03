@@ -20,7 +20,7 @@ export default function Page() {
   }
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 py-4">
       <div className="flex flex-col gap-2">
         <h3 className="text-2xl font-bold">마이크</h3>
         <MicSelection />
