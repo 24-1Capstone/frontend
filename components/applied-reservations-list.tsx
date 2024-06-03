@@ -16,7 +16,11 @@ function AppliedReservationsList() {
       (a, b) =>
         parseISO(a.startTime).getTime() - parseISO(b.startTime).getTime(),
     )
-    .sort((a, b) => (a.reservationStatus === 'REFUSE' ? 1 : -1))
+    .sort(
+      (a, b) =>
+        (a.reservationStatus === 'REFUSE' ? 1 : 0) -
+        (b.reservationStatus === 'REFUSE' ? 1 : 0),
+    )
 
   return appliedReservations?.length === 0 ? (
     <div className="py-4 text-foreground/30">신청한 커피챗이 없습니다.</div>
