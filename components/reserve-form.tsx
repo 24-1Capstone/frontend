@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter, useSearchParams } from 'next/navigation'
-import { format, isPast, isWeekend } from 'date-fns'
+import { format, isPast, isWeekend, isToday } from 'date-fns'
 import { ko } from 'date-fns/locale'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -112,7 +112,9 @@ function ReserveForm() {
                     locale={ko}
                     selected={field.value}
                     onSelect={field.onChange}
-                    disabled={(date) => isPast(date) || isWeekend(date)}
+                    disabled={(date) =>
+                      (isPast(date) && !isToday(date)) || isWeekend(date)
+                    }
                     initialFocus
                   />
                 </PopoverContent>
@@ -161,7 +163,7 @@ function ReserveForm() {
               <FormLabel>메시지</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="자기소개 또는 대화 주제 등 간단한 메시지를 남겨보세요!"
+                  placeholder="자기소개나 대화 주제 등 간단한 메시지를 남겨보세요!"
                   {...field}
                 />
               </FormControl>
