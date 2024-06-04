@@ -162,14 +162,16 @@ function ReservationCard({
           </div>
         </div>
       </CardHeader>
-      <CardContent className="flex-col text-sm text-foreground/50">
-        <span className="font-semibold text-foreground/70">
-          {type === 'APPLIED'
-            ? '내가 보낸 메시지'
-            : `${data.applyUserName}님이 보낸 메시지`}
-        </span>
-        <p>{data.content}</p>
-      </CardContent>
+      {data.content.length !== 0 && (
+        <CardContent className="flex-col text-sm text-foreground/50">
+          <span className="font-semibold text-foreground/70">
+            {type === 'APPLIED'
+              ? '내가 보낸 메시지'
+              : `${data.applyUserName}님이 보낸 메시지`}
+          </span>
+          <p>{data.content}</p>
+        </CardContent>
+      )}
       <CardFooter className="flex justify-between">
         <div className="flex gap-4">
           <Badge variant={STATUS[data.reservationStatus][0]}>
