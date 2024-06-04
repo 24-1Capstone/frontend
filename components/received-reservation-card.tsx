@@ -125,9 +125,10 @@ function ReceivedReservationCard({ data }: { data: IReservation }) {
               </Button>
             </>
           )}
-          {isToday(data.startTime) && (
-            <Button onClick={handleJoin}>입장</Button>
-          )}
+          {data.reservationStatus === 'CONFIRMED' &&
+            isToday(data.startTime) && (
+              <Button onClick={handleJoin}>입장</Button>
+            )}
         </div>
       </CardFooter>
     </Card>
