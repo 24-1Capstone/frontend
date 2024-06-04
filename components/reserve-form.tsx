@@ -164,6 +164,7 @@ function ReserveForm() {
               <FormControl>
                 <Textarea
                   placeholder="자기소개나 대화 주제 등 간단한 메시지를 남겨보세요!"
+                  maxLength={160}
                   {...field}
                 />
               </FormControl>
