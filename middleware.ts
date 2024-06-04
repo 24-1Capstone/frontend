@@ -14,7 +14,8 @@ export async function middleware(req: NextRequest, event: NextFetchEvent) {
       pathname.startsWith('/my-chat') ||
       pathname.startsWith('/profile') ||
       pathname.startsWith('/settings') ||
-      pathname.startsWith('/meet')
+      pathname.startsWith('/meet') ||
+      pathname.startsWith('/reserve')
     )
       return NextResponse.redirect(new URL('/', req.url))
   }
