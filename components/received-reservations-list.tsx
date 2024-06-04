@@ -4,10 +4,10 @@ import { parseISO } from 'date-fns'
 
 import { useAllReservations } from '@/hooks/queries/use-all-reservations'
 import { useMyInfo } from '@/hooks/queries/use-my-info'
-import { ReceivedReservationCard } from '@/components/received-reservation-card'
+import { ReservationCard } from '@/components/reservation-card'
 
 function ReceivedReservationsList() {
-  const { data: reservations } = useAllReservations()
+  const { data: reservations, refetch } = useAllReservations()
   const { data: myInfo } = useMyInfo()
 
   const receivedReservations = reservations
@@ -26,7 +26,12 @@ function ReceivedReservationsList() {
     <div className="py-4 text-foreground/30">신청받은 커피챗이 없습니다.</div>
   ) : (
     receivedReservations?.map((data) => (
-      <ReceivedReservationCard key={data.id} data={data} />
+      <ReservationCard
+        key={data.id}
+        data={data}
+        type="RECEIVED"
+        onChangeStatus={refetch}
+      />
     ))
   )
 }
