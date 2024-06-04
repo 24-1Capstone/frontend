@@ -5,7 +5,7 @@ import { FollowingList } from '@/components/following-list'
 export default function Page() {
   return (
     <Tabs defaultValue="followers">
-      <TabsList className="mb-4 w-full">
+      <TabsList className="w-full">
         <TabsTrigger value="followers" className="w-1/2">
           팔로워
         </TabsTrigger>

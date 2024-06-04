@@ -8,11 +8,18 @@ function FollowersList() {
   const { data: followers } = useMyFollowers()
 
   return (
-    <ScrollArea className="flex max-h-[calc(100dvh-216px)] flex-col gap-4">
-      {followers?.map((user) => (
-        <UserCard key={`follower-${user.id}`} user={user} />
-      ))}
-    </ScrollArea>
+    <>
+      <div className="px-4">
+        <span className="text-sm font-medium text-foreground/70">
+          총 {followers?.length}명
+        </span>
+      </div>
+      <ScrollArea className="mt-2 flex max-h-[calc(100dvh-238px)] flex-col gap-4">
+        {followers?.map((user) => (
+          <UserCard key={`follower-${user.id}`} user={user} />
+        ))}
+      </ScrollArea>
+    </>
   )
 }
 
