@@ -15,7 +15,7 @@ import {
 import { useMyInfo } from '@/hooks/queries/use-my-info'
 import { Badge, BadgeProps } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Card, CardFooter, CardHeader } from '@/components/ui/card'
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import type { IReservation } from '@/types/reservation'
 
@@ -126,10 +126,10 @@ function ReservationCard({
               </>
             )
           )
+        default:
+          return null
       }
     }
-
-    return null
   }
 
   return (
@@ -162,6 +162,14 @@ function ReservationCard({
           </div>
         </div>
       </CardHeader>
+      <CardContent className="flex-col text-sm text-foreground/50">
+        <span className="font-semibold text-foreground/70">
+          {type === 'APPLIED'
+            ? '내가 보낸 메시지'
+            : `${data.applyUserName}님이 보낸 메시지`}
+        </span>
+        <p>{data.content}</p>
+      </CardContent>
       <CardFooter className="flex justify-between">
         <div className="flex gap-4">
           <Badge variant={STATUS[data.reservationStatus][0]}>
