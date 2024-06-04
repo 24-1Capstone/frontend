@@ -8,12 +8,10 @@ function FollowingList() {
   const { data: following } = useMyFollowing()
 
   return (
-    <ScrollArea>
-      <div className="flex flex-col gap-4">
-        {following?.map((user) => (
-          <UserCard key={`following-${user.id}`} user={user} />
-        ))}
-      </div>
+    <ScrollArea className="flex max-h-[calc(100dvh-216px)] flex-col gap-4">
+      {following?.map((user) => (
+        <UserCard key={`following-${user.id}`} user={user} />
+      ))}
     </ScrollArea>
   )
 }

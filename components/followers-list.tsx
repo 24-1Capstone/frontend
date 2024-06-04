@@ -8,12 +8,10 @@ function FollowersList() {
   const { data: followers } = useMyFollowers()
 
   return (
-    <ScrollArea>
-      <div className="flex flex-col gap-4">
-        {followers?.map((user) => (
-          <UserCard key={`follower-${user.id}`} user={user} />
-        ))}
-      </div>
+    <ScrollArea className="flex max-h-[calc(100dvh-216px)] flex-col gap-4">
+      {followers?.map((user) => (
+        <UserCard key={`follower-${user.id}`} user={user} />
+      ))}
     </ScrollArea>
   )
 }
