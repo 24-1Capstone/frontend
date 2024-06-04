@@ -1,4 +1,8 @@
+'use client'
+
+import { useEffect, useState } from 'react'
 import {
+  getDeviceId,
   useAudioInputs,
   useLogger,
   useMeetingManager,
@@ -10,6 +14,22 @@ function MicSelection() {
   const logger = useLogger()
   const { devices, selectedDevice } = useAudioInputs()
   const meetingManager = useMeetingManager()
+
+  const [selectedDeviceLabel, setSelectedDeviceLabel] = useState<string>('')
+
+  useEffect(() => {
+    const getSelectedDeviceLabel = async () => {
+      const selectedDeviceId = await getDeviceId(selectedDevice)
+
+      const index = devices.findIndex(
+        (device) => device.deviceId === selectedDeviceId,
+      )
+
+      setSelectedDeviceLabel(devices[index].label)
+    }
+
+    getSelectedDeviceLabel()
+  }, [selectedDevice])
 
   const handleSelect = async (value: string) => {
     try {
@@ -23,7 +43,7 @@ function MicSelection() {
     <DeviceSelection
       onValueChange={handleSelect}
       devices={devices}
-      placeholder={selectedDevice?.toString() || '마이크를 선택해주세요.'}
+      placeholder={selectedDeviceLabel || '마이크를 선택해주세요.'}
     />
   )
 }
