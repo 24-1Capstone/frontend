@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { getMyFollowers } from '@/api/user'
 
-function useMyFollowers() {
+const useMyFollowers = () => {
   return useQuery({ queryKey: ['my-followers'], queryFn: getMyFollowers })
 }
 
