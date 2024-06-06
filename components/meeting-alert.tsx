@@ -1,41 +1,20 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
-import { MeetingSessionConfiguration } from 'amazon-chime-sdk-js'
-import { useMeetingManager } from 'amazon-chime-sdk-component-library-react'
-
-import { createAttendee, createMeeting } from '@/api/meet'
 import { useMyInfo } from '@/hooks/queries/use-my-info'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { IMeeting } from '@/types/meeting'
+import { useMeetingControl } from '@/hooks/use-meeting-control'
 
 function MeetingAlert({ data }: { data: IMeeting }) {
-  const router = useRouter()
-  const meetingManager = useMeetingManager()
+  const { join, end } = useMeetingControl(data)
 
   const { data: myInfo } = useMyInfo()
   const otherAttendee =
     data.applyUserName === myInfo?.[0].login
       ? data.receiveUserName
       : data.applyUserName
-
-  const handleJoin = async () => {
-    const meetingResponse = await createMeeting(
-      myInfo?.[0].login ?? '',
-      data.receiveUserName,
-    )
-    const attendeeResponse = await createAttendee(meetingResponse.meetingId)
-
-    const meetingSessionConfiguration = new MeetingSessionConfiguration(
-      meetingResponse,
-      attendeeResponse,
-    )
-
-    await meetingManager.join(meetingSessionConfiguration)
-    router.push('/meet/device')
-  }
 
   return (
     <Alert variant="primary" className="mb-8">
@@ -54,9 +33,16 @@ function MeetingAlert({ data }: { data: IMeeting }) {
           </AlertDescription>
         </div>
       </div>
-      <AlertDescription>
-        <Button size="sm" className="w-full" onClick={handleJoin}>
+      <AlertDescription className="flex gap-4">
+        <Button className="w-full" onClick={join}>
           이어하기
+        </Button>
+        <Button
+          variant="destructive"
+          className="w-full"
+          onClick={() => end(data.meetingId)}
+        >
+          종료하기
         </Button>
       </AlertDescription>
     </Alert>
