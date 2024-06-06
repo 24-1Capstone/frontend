@@ -23,10 +23,7 @@ function LogOutButton() {
 
   const handleLogOut = () => {
     logOut().then(() => {
-      Cookies.remove('refresh_token')
-      Cookies.remove('refresh_token', { path: '/', domain: '.coffeechat.shop' })
-      Cookies.remove('token')
-      router.push('/')
+      router.push('/api/auth/logout')
     })
   }
 
