@@ -3,7 +3,7 @@
 import { useRouter, useSearchParams } from 'next/navigation'
 import { format, isPast, isWeekend, isToday } from 'date-fns'
 import { ko } from 'date-fns/locale'
-import { Control, FieldValues, useForm } from 'react-hook-form'
+import { Control, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { CalendarIcon } from 'lucide-react'

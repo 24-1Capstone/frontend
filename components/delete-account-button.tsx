@@ -1,7 +1,6 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import Cookies from 'js-cookie'
 
 import { deleteAccount, logOut } from '@/api/auth'
 import { Button } from '@/components/ui/button'

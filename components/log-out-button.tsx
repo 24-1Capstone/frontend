@@ -1,7 +1,6 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import Cookies from 'js-cookie'
 
 import { logOut } from '@/api/auth'
 import { useMyInfo } from '@/hooks/queries/use-my-info'
