@@ -23,7 +23,9 @@ const useMeetingControl = (data: IReservation | IMeeting) => {
   const join = async () => {
     const meetingResponse = await createMeeting(
       myInfo?.[0].login ?? '',
-      data.receiveUserName,
+      data.applyUserName === myInfo?.[0].login
+        ? data.receiveUserName
+        : data.applyUserName,
     )
     const attendeeResponse = await createAttendee(meetingResponse.meetingId)
 
