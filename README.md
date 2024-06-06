@@ -1,4 +1,6 @@
 ![CleanShot 2024-06-07 at 00 55 27@2x](https://github.com/24-1Capstone/frontend/assets/94912717/02daa785-a52a-4cc5-b4ac-5c3d9671203a)
+# ChatHub
+GitHub로 시작하는 쉽고 빠른 개발자 커피챗
 
 ## ✨ 핵심 기능
 - GitHub 연동으로 빠르고 쉬운 동료(팔로워/팔로잉) 관리
