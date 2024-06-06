@@ -1,37 +1,16 @@
 'use client'
 
-import { parseISO } from 'date-fns'
-
-import { useAllReservations } from '@/hooks/queries/use-all-reservations'
-import { useMyInfo } from '@/hooks/queries/use-my-info'
+import { useReservations } from '@/hooks/use-reservations'
 import { ReservationCard } from '@/components/reservation-card'
 
 function AppliedReservationsList() {
-  const { data: reservations, refetch } = useAllReservations()
-  const { data: myInfo } = useMyInfo()
-
-  const appliedReservations = reservations
-    ?.filter((reservation) => reservation.applyUserName === myInfo?.[0].login)
-    .sort(
-      (a, b) =>
-        parseISO(a.startTime).getTime() - parseISO(b.startTime).getTime(),
-    )
-    .sort(
-      (a, b) =>
-        (a.reservationStatus === 'REFUSE' ? 1 : 0) -
-        (b.reservationStatus === 'REFUSE' ? 1 : 0),
-    )
+  const { appliedReservations } = useReservations()
 
   return appliedReservations?.length === 0 ? (
     <div className="py-4 text-foreground/30">신청한 커피챗이 없습니다.</div>
   ) : (
     appliedReservations?.map((data) => (
-      <ReservationCard
-        key={data.id}
-        data={data}
-        type="APPLIED"
-        onChangeStatus={refetch}
-      />
+      <ReservationCard key={data.id} data={data} type="APPLIED" />
     ))
   )
 }
