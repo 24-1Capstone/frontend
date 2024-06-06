@@ -23,8 +23,8 @@ function DeleteAccountButton() {
     await deleteAccount()
     await logOut()
 
-    Cookies.remove('token')
     Cookies.remove('refresh_token')
+    Cookies.remove('token')
     router.push('/')
   }
 
