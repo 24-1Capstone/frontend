@@ -24,6 +24,7 @@ function DeleteAccountButton() {
     await logOut()
 
     Cookies.remove('refresh_token')
+    Cookies.remove('refresh_token', { path: '/', domain: '.coffeechat.shop' })
     Cookies.remove('token')
     router.push('/')
   }

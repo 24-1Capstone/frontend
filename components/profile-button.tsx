@@ -35,6 +35,10 @@ function ProfileButton() {
     logOut().then((response) => {
       if (response.status === 200) {
         Cookies.remove('refresh_token')
+        Cookies.remove('refresh_token', {
+          path: '/',
+          domain: '.coffeechat.shop',
+        })
         Cookies.remove('token')
         router.push('/')
       }
