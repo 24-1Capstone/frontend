@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import Cookies from 'js-cookie'
 import { UserIcon, LogOutIcon } from 'lucide-react'
 
 import { logOut } from '@/api/auth'
@@ -33,6 +34,8 @@ function ProfileButton() {
   const handleLogOut = () => {
     logOut().then((response) => {
       if (response.status === 200) {
+        Cookies.remove('refresh_token')
+        Cookies.remove('token')
         router.push('/api/auth/logout')
       }
     })

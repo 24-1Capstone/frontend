@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import Cookies from 'js-cookie'
 
 import { deleteAccount, logOut } from '@/api/auth'
 import { Button } from '@/components/ui/button'
@@ -22,6 +23,8 @@ function DeleteAccountButton() {
     await deleteAccount()
     await logOut()
 
+    Cookies.remove('refresh_token')
+    Cookies.remove('token')
     router.push('/api/auth/logout')
   }
 
