@@ -1,26 +1,14 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-
-import { getAllMeetings } from '@/api/meet'
 import { MeetingAlert } from '@/components/meeting-alert'
-import { IMeeting } from '@/types/meeting'
+import { useAllMeetings } from '@/hooks/queries/use-all-meetings'
 
 function OpenedMeetings() {
-  const [meetings, setMeetings] = useState<IMeeting[]>([])
-
-  useEffect(() => {
-    async function fetchMeetings() {
-      const openedMeetings = await getAllMeetings()
-      setMeetings(openedMeetings)
-    }
-
-    fetchMeetings()
-  }, [])
+  const { data: meetings } = useAllMeetings()
 
   return (
-    meetings.length !== 0 &&
-    meetings.map((meeting) => (
+    meetings?.length !== 0 &&
+    meetings?.map((meeting) => (
       <MeetingAlert key={meeting.meetingId} data={meeting} />
     ))
   )
