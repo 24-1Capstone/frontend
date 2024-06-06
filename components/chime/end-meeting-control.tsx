@@ -47,9 +47,9 @@ function EndMeetingControl() {
         <DropdownMenuItem onClick={endMeetingForAll}>
           커피챗 종료하기
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={leaveMeeting}>
+        {/* <DropdownMenuItem onClick={leaveMeeting}>
           커피챗 나가기
-        </DropdownMenuItem>
+        </DropdownMenuItem> */}
       </DropdownMenuContent>
     </DropdownMenu>
   )
