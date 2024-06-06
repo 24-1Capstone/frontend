@@ -34,8 +34,8 @@ function ProfileButton() {
   const handleLogOut = () => {
     logOut().then((response) => {
       if (response.status === 200) {
-        Cookies.remove('token')
         Cookies.remove('refresh_token')
+        Cookies.remove('token')
         router.push('/')
       }
     })
