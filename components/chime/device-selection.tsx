@@ -24,8 +24,11 @@ function DeviceSelection({
       </SelectTrigger>
       <SelectContent>
         {devices.map((device) => (
-          <SelectItem key={device.deviceId} value={device.deviceId}>
-            {device.label}
+          <SelectItem
+            key={device.deviceId}
+            value={device.deviceId || 'no available device'}
+          >
+            {device.label ?? 'No available device'}
           </SelectItem>
         ))}
       </SelectContent>

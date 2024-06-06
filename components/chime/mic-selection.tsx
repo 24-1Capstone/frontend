@@ -25,7 +25,7 @@ function MicSelection() {
         (device) => device.deviceId === selectedDeviceId,
       )
 
-      setSelectedDeviceLabel(devices[index].label)
+      setSelectedDeviceLabel(devices[index]?.label)
     }
 
     getSelectedDeviceLabel()
