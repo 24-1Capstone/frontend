@@ -1,5 +1,5 @@
 import { DeleteAccountButton } from '@/components/delete-account-button'
-import { LogOutButton } from '@/components/logout-button'
+import { LogOutButton } from '@/components/log-out-button'
 
 export default function Page() {
   return (
