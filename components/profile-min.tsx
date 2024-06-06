@@ -9,7 +9,7 @@ function ProfileMin() {
   const searchParams = useSearchParams()
   const username = searchParams.get('user')
 
-  const { data: userInfo, isLoading } = useUserInfo(username ?? '')
+  const { data: userInfo } = useUserInfo(username ?? '')
 
   return (
     <div className="my-8 flex items-center gap-4">
