@@ -14,12 +14,12 @@ const useReservationControl = (data: IReservation) => {
       const response = await acceptReservation(data.id)
 
       if (response === 200) {
-        alert(`${data.applyUserName}님의 요청을 승인했습니다.`)
+        alert(`${data.applyUserName}님의 요청을 수락했습니다.`)
         refetch()
       }
     } catch (error) {
       console.error(error)
-      alert('승인에 실패했습니다.')
+      alert('수락에 실패했습니다.')
     }
   }
 

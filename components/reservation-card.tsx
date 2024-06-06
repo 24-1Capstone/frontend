@@ -16,7 +16,7 @@ const STATUS: Record<
   [BadgeProps['variant'], string]
 > = {
   PROGRESSING: ['default', '대기'],
-  CONFIRMED: ['success', '승인'],
+  CONFIRMED: ['success', '수락'],
   REFUSE: ['destructive', '거절'],
 }
 
@@ -46,7 +46,7 @@ function ReservationCard({
             data.reservationStatus === 'PROGRESSING' && (
               <>
                 <Button variant="success" onClick={accept}>
-                  승인
+                  수락
                 </Button>
                 <Button variant="destructive" onClick={reject}>
                   거절
