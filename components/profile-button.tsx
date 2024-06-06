@@ -36,7 +36,7 @@ function ProfileButton() {
       if (response.status === 200) {
         Cookies.remove('refresh_token')
         Cookies.remove('token')
-        router.push('/api/auth/logout')
+        router.push('/')
       }
     })
   }

@@ -25,7 +25,7 @@ function DeleteAccountButton() {
 
     Cookies.remove('refresh_token')
     Cookies.remove('token')
-    router.push('/api/auth/logout')
+    router.push('/')
   }
 
   return (
